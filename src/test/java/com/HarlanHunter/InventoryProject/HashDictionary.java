@@ -1,3 +1,4 @@
+package src.test.java.com.HarlanHunter.InventoryProject;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -51,7 +52,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
                 return count < size;
             }
 
-            @SuppressWarnings("Unchecked")
+            @SuppressWarnings("unchecked")
             @Override
             public K next() {
                 if (!hasNext()) {
@@ -83,7 +84,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
                 return count < size;
             }
 
-            @SuppressWarnings("Unchecked")
+            @SuppressWarnings("unchecked")
             @Override
             public V next() {
                 if (!hasNext()) {
@@ -102,7 +103,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
     }
 
     //Done
-    @SuppressWarnings("Unchecked")
+    @SuppressWarnings("unchecked")
     @Override
     public V get(K key) {
         int index = getHashIndex(key);
@@ -163,7 +164,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         }
     }
 
-    @SuppressWarnings("Unchecked")
+    @SuppressWarnings("unchecked")
     private void add(K key, V value) {
         Node currentNode = (Node)entries[getHashIndex(key)];
         Node toAdd = new Node(key, value);
