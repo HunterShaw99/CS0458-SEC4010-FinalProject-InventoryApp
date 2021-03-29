@@ -39,7 +39,8 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         size = 0;
     }
 
-    //Done
+    
+    
     @Override
     public Iterator<K> keys() {
         return new Iterator<K>() {
@@ -71,7 +72,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         };
     }
     
-    //Done
+   
     @Override
     public Iterator<V> elements() {
         return new Iterator<V>() {
@@ -102,7 +103,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         };
     }
 
-    //Done
+   
     @SuppressWarnings("unchecked")
     @Override
     public V get(K key) {
@@ -117,14 +118,15 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         return n.getValue();
     }
 
-    //Done
+    
+    @SuppressWarnings("unchecked")
     @Override
     public V remove(K key) {
         if (key == null) {
             throw new NullPointerException();
         }
         int nodeIndex = getHashIndex(key);
-        Node toRemove = (Node)entries[nodeIndex];
+		Node toRemove = (Node)entries[nodeIndex];
         if (toRemove == null) {
             return null;
         }
@@ -148,7 +150,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         return null;
     }
 
-    //Done
+    
     @Override
     public V put(K key, V value) {
         if (get(key) != null) {
@@ -164,6 +166,13 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         }
     }
 
+    /**
+     * Private helper method
+     * Method for adding a key,value pair to the collection.
+     * 
+     * @param K key, V value
+     * @return void
+     */
     @SuppressWarnings("unchecked")
     private void add(K key, V value) {
         Node currentNode = (Node)entries[getHashIndex(key)];
@@ -173,8 +182,18 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
         size++;
     }
 
+    /** 
+     * Private helper method
+     * Method to get a specific node from a specified key.
+     * Calls getHashIndex method to get the index of the key, 
+     * then loops through the chain of nodes until the key is found. Returning the node at that key. 
+     * 
+     * @param K key
+     * @return Node
+     */
+    @SuppressWarnings("unchecked")
     private Node getNodeForKey(K key) {
-        Node currentNode = (Node)entries[getHashIndex(key)];
+		Node currentNode = (Node)entries[getHashIndex(key)];
         while (!currentNode.getKey().equals(key)) {
             currentNode = currentNode.getNext();
             if (currentNode == null) {
@@ -185,11 +204,12 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
     }
 
     /**
+     * Private helper method
      * This returns an index based on the hashCode for the key object. The index
      * must be in the bounds of the array.
      *
      * @param key
-     * @return
+     * @return index of key
      */
     private int getHashIndex(K key) {
         int capacity = entries.length;
