@@ -204,6 +204,7 @@ public class AList<T> implements List<T> {
     //If it is, get the original value at position index,
     //Place the new obj into the array at index
     //Return the original object
+    @SuppressWarnings("unchecked")
     public T set(int index, T obj) {
       if (index < 0 || index > size) {
         throw new IndexOutOfBoundsException();
