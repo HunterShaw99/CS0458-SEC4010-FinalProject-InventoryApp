@@ -36,6 +36,8 @@ public class Main {
 		 * The SEARCH command will used to search for a unique product in the list, if the search is successful display that single product to the user. Prompt them 
 		 * to go back to the list and wait for a response. 
 		 */
+
+		 //TEST COMMENT
 		
 		
 	}
