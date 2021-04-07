@@ -209,7 +209,7 @@ public class HashDictionary<K, V> implements Dictionary<K, V> {
      * must be in the bounds of the array.
      *
      * @param key
-     * @return index of key
+     * @return index of key - calculated from key.hashCode() % capacity
      */
     private int getHashIndex(K key) {
         int capacity = entries.length;
