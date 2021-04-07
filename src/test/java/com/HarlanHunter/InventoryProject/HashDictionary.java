@@ -1,4 +1,6 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
+
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -16,9 +18,13 @@ import java.util.NoSuchElementException;
  * @author Stephen J. Sarma-Weierman
  * @author Hunter Mark Shaw
  */
-public class HashDictionary<K, V> implements Dictionary<K, V> {
+public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
 
-    private Object[] entries; //array of Nodes
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Object[] entries; //array of Nodes
     private int size;
     private static final int DEFAULT_CAPACITY = 17;
     

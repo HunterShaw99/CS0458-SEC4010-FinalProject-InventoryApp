@@ -1,7 +1,9 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
+
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.Arrays;
+import java.io.Serializable;
 
 /**
  * An array-based list data structure. For this implementation, please use the
@@ -9,8 +11,12 @@ import java.util.Arrays;
  * @author Stephen J. Weierman
  * @author Harlan Chandler
  */
-public class AList<T> implements List<T> {
-    private int size;
+public class AList<T> implements List<T>, Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int size;
     private Object[] list;
     private int capacity;
     public static final int DEFAULT_CAPACITY = 25;

@@ -1,20 +1,48 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ListIterator;
+
 public class Main {
 
 	public static void main(String[] args) {
-		/*		########	TESTING COLLECTIONS 	########
-		List<String> lst = new AList<>();
+		///*		########	TESTING COLLECTIONS 	########
+		List<String> keyLst = new AList<>();
+		List<Integer> valueLst = new AList<>();
 		Dictionary<String, Integer> dict = new HashDictionary<>();
-		lst.add("Mike");
-		lst.add("Joe");
-		lst.add("Weirach");
+		keyLst.add("Mike");
+		keyLst.add("Joe");
+		keyLst.add("Weirach");
+		keyLst.remove(2);
+		keyLst.add("Beyza");
 		dict.put("Coffee", 12);
 		dict.put("WATER", 79);
 		dict.put("LaVa", 64);
 		System.out.println(dict.size());
-		System.out.println(lst.size());
-		*/
+		System.out.println(keyLst.size());
+		//*/
+		
+		
+		/**
+		 * Here we are using the List lst's iterator to go from Object to Object storing 
+		 * each object inside the file Data.dat.
+		 */
+		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("src/test/res/local/Data.dat"))) {
+			ListIterator<String> it = keyLst.listIterator();
+
+			while (it.hasNext()) {
+				output.writeObject(it.next());
+			}
+			
+		} catch (IOException E) {
+			System.err.println("KJHFLKSDJ");
+		}
+		
+		
 		
 		/*
 		 * Main loop of program should check always before anything if there is a data file. This data file is where the products
@@ -38,6 +66,26 @@ public class Main {
 		 */
 		
 		
+		
+		
+		
 	}
+	
+	/**
+	 * Function used to get the Data file, if no file is found this function
+	 * will create the Data file. The data file is used to store the information 
+	 * preserved in the data structures. 
+	 */
+	/*
+	public static void getData() {
+		try (ObjectInputStream input = new ObjectInputStream()
+			) 
+		{
+			
+		} catch () {
+			
+		}
+	}
+	*/
 
 }
