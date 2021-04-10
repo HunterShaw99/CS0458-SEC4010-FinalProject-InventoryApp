@@ -1,14 +1,16 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
 
+import java.util.EmptyStackException;
+
 public class AStack<E> implements Stack<E> {
 	
 	private Object[] ar;
 	private int size;
 	private int capacity;
-	private final int DEFAULT_CAPACITY = 5;
+	final private int MAX_CAPACITY = 10;
 	
 	public AStack() {
-		capacity = DEFAULT_CAPACITY;
+		capacity = MAX_CAPACITY;
 		ar = new Object[capacity];
 		size = 0;
 	}
@@ -21,7 +23,7 @@ public class AStack<E> implements Stack<E> {
 	
 	@Override
 	public boolean empty() {
-		return size > 0;
+		return size == 0;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -33,16 +35,26 @@ public class AStack<E> implements Stack<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public E pop() {
-		// TODO Auto-generated method stub
-		E toRemove = (E) ar[size-1];
-		size--;
-		return toRemove;
+		if (size != 0) {
+			E toRemove = (E) ar[size-1];
+			ar[size-1] = null;
+			size--;
+			return toRemove;
+		} else {
+			throw new EmptyStackException();
+		}
+		
 	}
 
 	@Override
 	public E push(E item) {
-		// TODO Auto-generated method stub
-		return null;
+		if (size != capacity) {
+			ar[size] = item;
+			size++;
+			return item;
+		} else {
+			return null;
+		}
 	}
 
 }
