@@ -32,6 +32,24 @@ public class Main {
 		Dictionary<String, Integer> dict = new HashDictionary<>();
 		
 		getData(dataFile, dict, fileHasData);
+		Iterator<String> keyIt = dict.keys();
+        Iterator<Integer> valIt = dict.elements();
+        while(keyIt.hasNext()) {
+            if (!valIt.hasNext()) {
+                System.out.println("Problem with iterator, more keys than values");
+            }
+            String k = keyIt.next();
+            int v = valIt.next();
+            if (v == dict.get(k)) {
+                System.out.printf("(%s, %d) in dictionary\n", k, v);
+            } else {
+                System.out.println("Problem with iterators, key-value pair not matching.");
+            }
+                    
+        }
+        if(valIt.hasNext()) {
+            System.out.println("Problem with iterator, more values than keys");
+        }
 		
 		saveData(dataFile, dict);
 		
@@ -71,7 +89,6 @@ public class Main {
 	 * @param Dictionary<String, Integer> dataDict
 	 */
 	public static void getData(File fileIn, Dictionary<String, Integer> dataDict, boolean dataFlag) {
-		//TODO: Finish getData()
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
 		
 		try (FileInputStream inStream = new FileInputStream(fileIn);
@@ -80,7 +97,7 @@ public class Main {
 			System.out.println("File is there and is ready to be read from!");
 			while(inStream.available() > 0) {
 				String k = (String)input.readObject();
-				int v = (int)input.readObject();
+				Integer v = (Integer) input.readObject();
 				dataDict.put(k, v);
 			}
 		} catch(ClassNotFoundException e) {
