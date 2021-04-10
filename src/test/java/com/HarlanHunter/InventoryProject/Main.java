@@ -59,6 +59,7 @@ public class Main {
 		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
 		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life. 
 		
+
 		
 		
 	}
