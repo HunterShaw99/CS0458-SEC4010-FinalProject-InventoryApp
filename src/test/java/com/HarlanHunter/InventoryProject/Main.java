@@ -61,7 +61,7 @@ public class Main {
 		 * The SEARCH command will used to search for a unique product in the list, if the search is successful display that single product to the user. Prompt them 
 		 * to go back to the list and wait for a response. 
 		 */
-		
+		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
 		
 		
 		
@@ -73,10 +73,10 @@ public class Main {
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
 	 * @param File fileIn
-	 * 
+	 * @param Dictionary<String, Integer> dataDict
 	 */
 	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
-		
+		//TODO: Finish getData()
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
 		
 		try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileIn))) {
@@ -90,13 +90,23 @@ public class Main {
 				fileIn.createNewFile();
 			} catch(IOException e) {
 				e.printStackTrace();
+				System.err.println("Something went wrong! cannot create a new inventory. Program will terminate now.");
+				System.exit(1);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.err.println("Something went wrong! data cannot be accessed. Program will terminate now.");
+			System.exit(1);
 		}
 		
 	}
 	
+	/**
+	 * Function used by the program to save all data put into the collection from the user. 
+	 * The objects within the collection dataDict will be written to the Data.dat file.
+	 * @param File fileOut
+	 * @param Dictionary<String, Integer> dataDict
+	 */
 	public static void saveData(File fileOut, Dictionary<String, Integer> dataDict) {
 		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileOut))) {
 			Iterator<String> keyIt = dataDict.keys();
@@ -116,10 +126,13 @@ public class Main {
 	            }
 	        }
 		} catch(FileNotFoundException e) {
-			System.err.println("Something went wrong!");
 			e.printStackTrace();
+			System.err.println("Something went wrong! data cannot be saved. Program will terminate now.");
+			System.exit(2);
 		} catch(IOException e) {
 			e.printStackTrace();
+			System.err.println("Something went wrong! data cannot be saved. Program will terminate now.");
+			System.exit(2);
 		}
 	}
 	
