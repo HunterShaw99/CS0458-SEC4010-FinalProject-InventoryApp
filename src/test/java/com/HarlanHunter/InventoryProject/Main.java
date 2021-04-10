@@ -1,16 +1,21 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Iterator;
 import java.util.ListIterator;
+import java.io.FileNotFoundException;
 
 public class Main {
 
+	static File dataFile = new File("src/test/res/local/Data.dat");
+	
 	public static void main(String[] args) {
-		///*		########	TESTING COLLECTIONS 	########
+		/*		########	TESTING COLLECTIONS 	########
 		List<String> keyLst = new AList<>();
 		List<Integer> valueLst = new AList<>();
 		Dictionary<String, Integer> dict = new HashDictionary<>();
@@ -24,24 +29,16 @@ public class Main {
 		dict.put("LaVa", 64);
 		System.out.println(dict.size());
 		System.out.println(keyLst.size());
-		//*/
+		*/
+		Dictionary<String, Integer> dict = new HashDictionary<>();
+		List<String> keyLst = new AList<>();
+		List<Integer> valueLst = new AList<>();
 		
-		
-		/**
-		 * Here we are using the List lst's iterator to go from Object to Object storing 
-		 * each object inside the file Data.dat.
-		 */
-		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("src/test/res/local/Data.dat"))) {
-			ListIterator<String> it = keyLst.listIterator();
-
-			while (it.hasNext()) {
-				output.writeObject(it.next());
-			}
-			
-		} catch (IOException E) {
-			System.err.println("KJHFLKSDJ");
-		}
-		
+		getData(dataFile, dict);
+		dict.put("Coffee", 12);
+		dict.put("WATER", 79);
+		dict.put("LaVa", 64);
+		saveData(dataFile, dict);
 		
 		
 		/*
@@ -75,17 +72,56 @@ public class Main {
 	 * Function used to get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
+	 * @param File fileIn
+	 * 
 	 */
-	/*
-	public static void getData() {
-		try (ObjectInputStream input = new ObjectInputStream()
-			) 
-		{
+	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
+		
+		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
+		
+		try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileIn))) {
 			
-		} catch () {
+			System.out.println("File is there and is ready to be read from!");
 			
+			
+		} catch (FileNotFoundException ex) {
+			System.err.println("No previous data found!, Creating a new inventory.");
+			try  {
+				fileIn.createNewFile();
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void saveData(File fileOut, Dictionary<String, Integer> dataDict) {
+		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileOut))) {
+			Iterator<String> keyIt = dataDict.keys();
+	        Iterator<Integer> valIt = dataDict.elements();
+	        while(keyIt.hasNext()) {
+	            if (!valIt.hasNext()) {
+	                System.out.println("Problem with iterator, more keys than values");
+	                break;
+	            }
+	            String k = keyIt.next();
+	            int v = valIt.next();
+	            output.writeObject(k);
+	            output.writeObject(v);
+	            if (v != dataDict.get(k)) {
+	                System.out.printf("(%s, %d) Do not match, Error saving data!\n", k, v);
+	                break;
+	            }
+	        }
+		} catch(FileNotFoundException e) {
+			System.err.println("Something went wrong!");
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
-	*/
+	
 
 }
