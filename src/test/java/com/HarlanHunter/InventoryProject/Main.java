@@ -32,24 +32,6 @@ public class Main {
 		Dictionary<String, Integer> dict = new HashDictionary<>();
 		
 		getData(dataFile, dict, fileHasData);
-		Iterator<String> keyIt = dict.keys();
-        Iterator<Integer> valIt = dict.elements();
-        while(keyIt.hasNext()) {
-            if (!valIt.hasNext()) {
-                System.out.println("Problem with iterator, more keys than values");
-            }
-            String k = keyIt.next();
-            int v = valIt.next();
-            if (v == dict.get(k)) {
-                System.out.printf("(%s, %d) in dictionary\n", k, v);
-            } else {
-                System.out.println("Problem with iterators, key-value pair not matching.");
-            }
-                    
-        }
-        if(valIt.hasNext()) {
-            System.out.println("Problem with iterator, more values than keys");
-        }
 		
 		saveData(dataFile, dict);
 		
