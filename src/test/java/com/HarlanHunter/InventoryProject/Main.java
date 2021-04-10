@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.io.FileNotFoundException;
 
 public class Main {
 
 	static File dataFile = new File("src/test/res/local/Data.dat");
-	
+	static boolean fileHasData = false;
 	public static void main(String[] args) {
 		/*		########	TESTING COLLECTIONS 	########
 		List<String> keyLst = new AList<>();
@@ -31,13 +30,9 @@ public class Main {
 		System.out.println(keyLst.size());
 		*/
 		Dictionary<String, Integer> dict = new HashDictionary<>();
-		List<String> keyLst = new AList<>();
-		List<Integer> valueLst = new AList<>();
 		
-		getData(dataFile, dict);
-		dict.put("Coffee", 12);
-		dict.put("WATER", 79);
-		dict.put("LaVa", 64);
+		getData(dataFile, dict, fileHasData);
+		
 		saveData(dataFile, dict);
 		
 		
@@ -62,7 +57,7 @@ public class Main {
 		 * to go back to the list and wait for a response. 
 		 */
 		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
-		
+		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life. 
 		
 		
 		
@@ -75,19 +70,27 @@ public class Main {
 	 * @param File fileIn
 	 * @param Dictionary<String, Integer> dataDict
 	 */
-	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
+	public static void getData(File fileIn, Dictionary<String, Integer> dataDict, boolean dataFlag) {
 		//TODO: Finish getData()
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
 		
-		try (ObjectInputStream input = new ObjectInputStream(new FileInputStream(fileIn))) {
-			
+		try (FileInputStream inStream = new FileInputStream(fileIn);
+				ObjectInputStream input = new ObjectInputStream(inStream)) {
+			dataFlag = true;
 			System.out.println("File is there and is ready to be read from!");
-			
-			
-		} catch (FileNotFoundException ex) {
+			while(inStream.available() > 0) {
+				String k = (String)input.readObject();
+				int v = (int)input.readObject();
+				dataDict.put(k, v);
+			}
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch (FileNotFoundException ex) {
 			System.err.println("No previous data found!, Creating a new inventory.");
 			try  {
 				fileIn.createNewFile();
+				dataFlag = false;
 			} catch(IOException e) {
 				e.printStackTrace();
 				System.err.println("Something went wrong! cannot create a new inventory. Program will terminate now.");
