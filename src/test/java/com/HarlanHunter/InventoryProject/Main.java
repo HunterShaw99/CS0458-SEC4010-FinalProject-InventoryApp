@@ -7,13 +7,18 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Iterator;
+import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class Main {
 
 	static File dataFile = new File("src/test/res/local/Data.dat");
-	static boolean fileHasData = false;
+	static boolean fileFlag = false;
+	static boolean exitFlag = false;
+	
 	public static void main(String[] args) {
+		
+		
 		/*		########	TESTING COLLECTIONS 	########
 		List<String> keyLst = new AList<>();
 		List<Integer> valueLst = new AList<>();
@@ -30,11 +35,7 @@ public class Main {
 		System.out.println(keyLst.size());
 		*/
 		Dictionary<String, Integer> dict = new HashDictionary<>();
-		
-		getData(dataFile, dict, fileHasData);
-		
-		saveData(dataFile, dict);
-		
+		Stack<String> stack = new AStack<>();
 		
 		/*
 		 * Main loop of program should check always before anything if there is a data file. This data file is where the products
@@ -57,9 +58,65 @@ public class Main {
 		 * to go back to the list and wait for a response. 
 		 */
 		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
-		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life. 
+		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life.
 		
-
+		/**
+		 * Main loop of the program - Implementation by @author Hunter shaw
+		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
+		 * getData(dataFile, dict);
+		if (fileFlag) {
+			//iterate over the dictionary
+			// prompt to enter a command then prompt for arguments.
+		} else {
+			
+		}
+		 */
+		
+		
+		Scanner in = new Scanner(System.in);
+		String check = "y";
+		String operation;
+		String entery;
+		int num = 0;
+		
+		while (check == "Y" || check == "y") {
+			System.out.println("What operation (ADD, REMOVE, SEARCH) and entery would you like to preform?:");
+			operation = in.next();
+			
+			while (operation != "ADD" && operation != "REMOVE" && operation != "SEARCH") {
+				System.out.println("Please enter a valid operation (ADD, REMOVE, SEARCH):");
+				operation = in.next();
+			}
+			
+			while (operation == "ADD" || operation == "REMOVE" || operation == "SEARCH") {
+			
+				switch(operation) {
+				case "ADD":
+					entery = in.next();
+					stack.push(entery);
+					dict.put(stack.peek(), num);
+					num++;
+					break;
+				case "REMOVE":
+					entery = in.next();
+					
+					num--;
+					break;
+				case "SEARCH":
+					entery = in.next();
+					
+					break;
+				}
+				
+				operation = in.next();
+			}
+			
+			
+			saveData(dataFile, dict);
+			System.out.print("Would you like to preform another search? (Y/N): ");
+			check = in.next();
+		}
+		
 		
 		
 	}
@@ -68,15 +125,16 @@ public class Main {
 	 * Function used to get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
+	 * @author Hunter Mark Shaw
 	 * @param File fileIn
 	 * @param Dictionary<String, Integer> dataDict
 	 */
-	public static void getData(File fileIn, Dictionary<String, Integer> dataDict, boolean dataFlag) {
+	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
 		
 		try (FileInputStream inStream = new FileInputStream(fileIn);
 				ObjectInputStream input = new ObjectInputStream(inStream)) {
-			dataFlag = true;
+			fileFlag = true;
 			System.out.println("File is there and is ready to be read from!");
 			while(inStream.available() > 0) {
 				String k = (String)input.readObject();
@@ -90,7 +148,7 @@ public class Main {
 			System.err.println("No previous data found!, Creating a new inventory.");
 			try  {
 				fileIn.createNewFile();
-				dataFlag = false;
+				fileFlag = false;
 			} catch(IOException e) {
 				e.printStackTrace();
 				System.err.println("Something went wrong! cannot create a new inventory. Program will terminate now.");
@@ -107,6 +165,7 @@ public class Main {
 	/**
 	 * Function used by the program to save all data put into the collection from the user. 
 	 * The objects within the collection dataDict will be written to the Data.dat file.
+	 * @author Hunter Mark Shaw
 	 * @param File fileOut
 	 * @param Dictionary<String, Integer> dataDict
 	 */
@@ -136,6 +195,52 @@ public class Main {
 			e.printStackTrace();
 			System.err.println("Something went wrong! data cannot be saved. Program will terminate now.");
 			System.exit(2);
+		}
+	}
+	
+	/**
+	 * Function to get input directly from the user, and use that input to manipulate 
+	 * the data. 
+	 * @author Hunter Mark Shaw
+	 * @param Scanner input
+	 * @param StringBuilder b
+	 */
+	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
+		String command = "";
+		command = input.next();
+		while (input.hasNext()) {
+			if (input.hasNext(";")) {
+				break;
+			}
+			command = input.next();
+			switch (command) {
+			case "ADD":
+				
+				System.out.println(commandQue.push("ADD"));
+				
+				/*
+				while (input.next() != "ADD" || input.next() != "REMOVE" || input.next() != "SEARCH") {
+					if (input.next() == ";") {
+						break;
+					}
+					b.append(input.next());
+					b.append(' ');
+					
+				}
+				*/
+				break;
+			case "REMOVE":
+				System.out.println(commandQue.push("REMOVE"));
+				break;
+			case "SEARCH":
+				System.out.println(commandQue.push("SEARCH"));
+				break;
+			case "Q":
+				exitFlag = true;
+				break;
+			default:
+				System.out.println("Sorry your command is not recognized");
+			}
 		}
 	}
 	
