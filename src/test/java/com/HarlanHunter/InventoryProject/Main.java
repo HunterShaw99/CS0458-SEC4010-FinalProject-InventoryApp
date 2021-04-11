@@ -20,19 +20,9 @@ public class Main {
 		
 		
 		/*		########	TESTING COLLECTIONS 	########
-		List<String> keyLst = new AList<>();
-		List<Integer> valueLst = new AList<>();
-		Dictionary<String, Integer> dict = new HashDictionary<>();
-		keyLst.add("Mike");
-		keyLst.add("Joe");
-		keyLst.add("Weirach");
-		keyLst.remove(2);
-		keyLst.add("Beyza");
 		dict.put("Coffee", 12);
 		dict.put("WATER", 79);
 		dict.put("LaVa", 64);
-		System.out.println(dict.size());
-		System.out.println(keyLst.size());
 		*/
 		Dictionary<String, Integer> dict = new HashDictionary<>();
 		Stack<String> stack = new AStack<>();
@@ -64,16 +54,26 @@ public class Main {
 		 * Main loop of the program - Implementation by @author Hunter shaw
 		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
 		 * getData(dataFile, dict);
+		 * */
+		Scanner in = new Scanner(System.in);
+		StringBuilder strBuilder = new StringBuilder();
 		if (fileFlag) {
 			//iterate over the dictionary
 			// prompt to enter a command then prompt for arguments.
 		} else {
+			while (!exitFlag) {
+				System.out.println("Enter a command: ADD, REMOVE, SEARCH");
+				getInput(in, strBuilder, stack);
+				while (!stack.empty()) {
+					//Perform queries from the stack & repeat until user exits program.
+				}
+			}
 			
 		}
-		 */
+		 
 		
+		/*
 		
-		Scanner in = new Scanner(System.in);
 		String check = "y";
 		String operation;
 		String entery;
@@ -116,7 +116,7 @@ public class Main {
 			System.out.print("Would you like to preform another search? (Y/N): ");
 			check = in.next();
 		}
-		
+		*/
 		
 		
 	}
@@ -204,6 +204,7 @@ public class Main {
 	 * @author Hunter Mark Shaw
 	 * @param Scanner input
 	 * @param StringBuilder b
+	 * @param Stack commandQue
 	 */
 	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
 		String command = "";
@@ -212,36 +213,14 @@ public class Main {
 			if (input.hasNext(";")) {
 				break;
 			}
-			command = input.next();
-			switch (command) {
-			case "ADD":
-				
-				System.out.println(commandQue.push("ADD"));
-				
-				/*
-				while (input.next() != "ADD" || input.next() != "REMOVE" || input.next() != "SEARCH") {
-					if (input.next() == ";") {
-						break;
-					}
-					b.append(input.next());
-					b.append(' ');
-					
-				}
-				*/
-				break;
-			case "REMOVE":
-				System.out.println(commandQue.push("REMOVE"));
-				break;
-			case "SEARCH":
-				System.out.println(commandQue.push("SEARCH"));
-				break;
-			case "Q":
-				exitFlag = true;
-				break;
-			default:
-				System.out.println("Sorry your command is not recognized");
-			}
+			b.append(input.next());
+			b.append(' ');
+			
 		}
+	char currentQuery[] = b.toString().toCharArray();
+	// Reverse array to mimic the order the commands will be executed on the stack.
+	// Add elements from array to stack & leave function.
+	
 	}
 	
 
