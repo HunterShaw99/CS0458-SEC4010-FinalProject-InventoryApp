@@ -203,8 +203,8 @@ public class Main {
 	}
 	
 	/**
-	 * Function to get input directly from the user, and use that input to manipulate 
-	 * the data. 
+	 * Function to get input directly from the user, and order the input in the logical manner they would be
+	 * executed naturally. Adding each command and argument onto the stack for use later. 
 	 * @author Hunter Mark Shaw
 	 * @param Scanner input
 	 * @param StringBuilder b
@@ -216,8 +216,6 @@ public class Main {
 		while (!input.hasNext(";")) {
 			b.append(input.next());
 			b.append(' ');
-			
-			
 		}
 		input.nextLine();
 		char currentQuery[] = b.toString().toCharArray();
@@ -233,7 +231,6 @@ public class Main {
 			i++;
 			j--;
 		}
-		System.out.println(currentQuery);
 		char[] buffer = new char[currentQuery.length];
 		int bufferIndex = 0;
 		for (int index = 0; index < currentQuery.length; index++) {
