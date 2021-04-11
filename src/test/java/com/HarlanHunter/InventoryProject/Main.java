@@ -234,8 +234,12 @@ public class Main {
 		char[] buffer = new char[currentQuery.length];
 		int bufferIndex = 0;
 		for (int index = 0; index < currentQuery.length; index++) {
+			// If there is not a space we add the char to the buffer array.
+			// We do this up until there is a space.
 			if (currentQuery[index] != ' ') {
 				buffer[bufferIndex++] = currentQuery[index];
+				// here we check is the next element in the array a space.
+				// If so we manipulate our current command or argument.
 				if (currentQuery[index + 1] == ' ') {
 					String userInput = "";
 					int k = bufferIndex;
@@ -245,6 +249,8 @@ public class Main {
 						}
 					}
 					int inputLen = 0;
+					// Here since the String userInput has a space always infront, which we dont want
+					// we will remove it. By adding all the char elements within the String excluding the first element. 
 					char[] returnInput = new char[userInput.length()-1];
 					while (inputLen < userInput.length()-1) {
 						returnInput[inputLen++] = userInput.charAt(inputLen);
@@ -252,6 +258,7 @@ public class Main {
 					userInput = String.valueOf(returnInput);
 					commandQue.push(userInput);
 				}
+				// Else there is a new command or argument to take in so we reset our main variables.
 			} else {
 				bufferIndex = 0;
 				buffer = new char[currentQuery.length];
