@@ -44,8 +44,7 @@ public class Main {
 		 * 
 		 * The REMOVE command is used to remove a specific element(product) from the collections and if successful, the newly updated list is automatically displayed. 
 		 * 
-		 * The SEARCH command will used to search for a unique product in the list, if the search is successful display that single product to the user. Prompt them 
-		 * to go back to the list and wait for a response. 
+		 * PRINT is a command useful for printing out the current Inventory of products inside the dictionary.
 		 */
 		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
 		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life.
@@ -62,10 +61,15 @@ public class Main {
 			// prompt to enter a command then prompt for arguments.
 		} else {
 			while (!exitFlag) {
-				System.out.println("Enter a command: ADD, REMOVE, SEARCH");
 				getInput(in, strBuilder, stack);
 				while (!stack.empty()) {
 					//Perform queries from the stack & repeat until user exits program.
+					String command = stack.pop();
+					String k = stack.pop();
+					int v = Integer.parseInt(stack.pop());
+					
+					System.out.println(v + " " + k + " " + command);
+					exitFlag = true;
 				}
 			}
 			
@@ -207,21 +211,57 @@ public class Main {
 	 * @param Stack commandQue
 	 */
 	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
-		String command = "";
-		command = input.next();
-		while (input.hasNext()) {
-			if (input.hasNext(";")) {
-				break;
-			}
+		System.out.println("Enter a command: ADD, REMOVE, PRINT");
+		b.append(' ');
+		while (!input.hasNext(";")) {
 			b.append(input.next());
 			b.append(' ');
 			
+			
 		}
-	char currentQuery[] = b.toString().toCharArray();
-	// Reverse array to mimic the order the commands will be executed on the stack.
-	// Add elements from array to stack & leave function.
-	
+		input.nextLine();
+		char currentQuery[] = b.toString().toCharArray();
+		// Reverse array to mimic the order the commands will be executed on the stack.
+		// Add elements from array to stack & leave function.
+		int i = 0;
+		int j = currentQuery.length - 1;
+		char temp = ' ';
+		while (i < j) {
+			temp = currentQuery[i];
+			currentQuery[i] = currentQuery[j];
+			currentQuery[j] = temp;
+			i++;
+			j--;
+		}
+		System.out.println(currentQuery);
+		char[] buffer = new char[currentQuery.length];
+		int bufferIndex = 0;
+		for (int index = 0; index < currentQuery.length; index++) {
+			if (currentQuery[index] != ' ') {
+				buffer[bufferIndex++] = currentQuery[index];
+				if (currentQuery[index + 1] == ' ') {
+					String userInput = "";
+					int k = bufferIndex;
+					while (k >= 0) {
+						if (buffer[k] != ' ') {
+							userInput += buffer[k--];
+						}
+					}
+					int inputLen = 0;
+					char[] returnInput = new char[userInput.length()-1];
+					while (inputLen < userInput.length()-1) {
+						returnInput[inputLen++] = userInput.charAt(inputLen);
+					}
+					userInput = String.valueOf(returnInput);
+					commandQue.push(userInput);
+				}
+			} else {
+				bufferIndex = 0;
+				buffer = new char[currentQuery.length];
+			}
+		}
 	}
+	
 	
 
 }
