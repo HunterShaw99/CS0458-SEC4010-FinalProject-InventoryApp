@@ -47,12 +47,18 @@ public class AStack<E> implements Stack<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public E pop() {
-		if (size != 0) {
-			E toRemove = (E) ar[size-1];
-			ar[size-1] = null;
+		E toRemove;
+		if (size > 0) {
+			toRemove = (E) ar[size-1];
 			size--;
+			ar[size] = null;
 			return toRemove;
-		} else {
+		} else if (size == 0) {
+			toRemove = (E) ar[size];
+			ar[size] = null;
+			return toRemove;
+		}
+		else {
 			throw new EmptyStackException();
 		}
 		
@@ -60,7 +66,7 @@ public class AStack<E> implements Stack<E> {
 
 	@Override
 	public E push(E item) {
-		if (size != capacity) {
+		if (size <= capacity) {
 			ar[size] = item;
 			size++;
 			return item;

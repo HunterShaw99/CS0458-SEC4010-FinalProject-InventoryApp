@@ -62,14 +62,27 @@ public class Main {
 		} else {
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
+				strBuilder.setLength(0);
 				while (!stack.empty()) {
 					//Perform queries from the stack & repeat until user exits program.
 					String command = stack.pop();
-					String k = stack.pop();
-					int v = Integer.parseInt(stack.pop());
+					switch (command) {
+					case "ADD":
+						String k = stack.pop();
+						int v = Integer.parseInt(stack.pop());
+						System.out.println(v + " " + k + " " + command);
+						break;
+					case "REMOVE":
+						break;
+					case "PRINT":
+						break;
+					case "Q":
+						System.out.println("Program saving, then terminating...");
+						System.exit(0);
+				}
 					
-					System.out.println(v + " " + k + " " + command);
-					exitFlag = true;
+					
+					
 				}
 			}
 			
