@@ -59,6 +59,7 @@ public class Main {
 		if (fileFlag) {
 			//iterate over the dictionary
 			// prompt to enter a command then prompt for arguments.
+			System.out.println("File has data .. terminating for now");
 		} else {
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
@@ -70,14 +71,20 @@ public class Main {
 					case "ADD":
 						String k = stack.pop();
 						int v = Integer.parseInt(stack.pop());
+						dict.put(k, v);
 						System.out.println(v + " " + k + " " + command);
 						break;
 					case "REMOVE":
+						String k1 = stack.pop();
+						int v1 = Integer.parseInt(stack.pop());
+						dict.remove(k1);
+						System.out.println(v1 + " " + k1 + " " + command);
 						break;
 					case "PRINT":
 						break;
 					case "Q":
 						System.out.println("Program saving, then terminating...");
+						saveData(dataFile, dict);
 						System.exit(0);
 				}
 					
