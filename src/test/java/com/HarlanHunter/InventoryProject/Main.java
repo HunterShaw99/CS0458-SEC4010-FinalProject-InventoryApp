@@ -54,6 +54,7 @@ public class Main {
 		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
 		 * getData(dataFile, dict);
 		 * */
+		getData(dataFile, dict);
 		Scanner in = new Scanner(System.in);
 		StringBuilder strBuilder = new StringBuilder();
 		if (fileFlag) {
@@ -68,25 +69,25 @@ public class Main {
 					//Perform queries from the stack & repeat until user exits program.
 					String command = stack.pop();
 					switch (command) {
-					case "ADD":
-						String k = stack.pop();
-						int v = Integer.parseInt(stack.pop());
-						dict.put(k, v);
-						System.out.println(v + " " + k + " " + command);
-						break;
-					case "REMOVE":
-						String k1 = stack.pop();
-						int v1 = Integer.parseInt(stack.pop());
-						dict.remove(k1);
-						System.out.println(v1 + " " + k1 + " " + command);
-						break;
-					case "PRINT":
-						break;
-					case "Q":
-						System.out.println("Program saving, then terminating...");
-						saveData(dataFile, dict);
-						System.exit(0);
-				}
+						case "ADD":
+							String k = stack.pop();
+							int v = Integer.parseInt(stack.pop());
+							dict.put(k, v);
+							System.out.println(v + " " + k + " " + command);
+							break;
+						case "REMOVE":
+							String k1 = stack.pop();
+							int v1 = Integer.parseInt(stack.pop());
+							dict.remove(k1);
+							System.out.println(v1 + " " + k1 + " " + command);
+							break;
+						case "PRINT":
+							break;
+						case "Q":
+							System.out.println("Program saving, then terminating...");
+							saveData(dataFile, dict);
+							System.exit(0);
+					}
 					
 					
 					
