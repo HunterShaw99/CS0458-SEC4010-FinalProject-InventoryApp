@@ -61,6 +61,7 @@ public class Main {
 			// prompt to enter a command then prompt for arguments.
 			System.out.println("File has data .. terminating for now");
 		} else {
+			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
 				strBuilder.setLength(0);
@@ -88,7 +89,7 @@ public class Main {
 							saveData(dataFile, dict);
 							System.exit(0); // Exit the program after the user inputs Q command. 
 					}
-					
+					System.out.println("To quit enter (Q ;)");
 				}
 			}
 			
@@ -113,7 +114,7 @@ public class Main {
                     
         }
         if(valIt.hasNext()) {
-            System.out.println("Problem with iterator, more values than keys");
+            System.out.println("Problem with inventory, item quantity mismatch");
         }
 	}
 	
@@ -199,7 +200,6 @@ public class Main {
 	 * @param Stack commandQue
 	 */
 	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
-		System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 		b.append(' ');
 		while (!input.hasNext(";")) {
 			b.append(input.next());
