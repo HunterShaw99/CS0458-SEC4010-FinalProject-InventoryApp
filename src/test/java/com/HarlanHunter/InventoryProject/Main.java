@@ -50,7 +50,7 @@ public class Main {
 		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life.
 		
 		/**
-		 * Main loop of the program - Implementation by @author Hunter shaw
+		 * Main loop of the program
 		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
 		 */
 		getData(dataFile, dict);
@@ -92,54 +92,6 @@ public class Main {
 			}
 			
 		}
-		 
-		
-		/*
-		
-		String check = "y";
-		String operation;
-		String entery;
-		int num = 0;
-		
-		while (check == "Y" || check == "y") {
-			System.out.println("What operation (ADD, REMOVE, SEARCH) and entery would you like to preform?:");
-			operation = in.next();
-			
-			while (operation != "ADD" && operation != "REMOVE" && operation != "SEARCH") {
-				System.out.println("Please enter a valid operation (ADD, REMOVE, SEARCH):");
-				operation = in.next();
-			}
-			
-			while (operation == "ADD" || operation == "REMOVE" || operation == "SEARCH") {
-			
-				switch(operation) {
-				case "ADD":
-					entery = in.next();
-					stack.push(entery);
-					dict.put(stack.peek(), num);
-					num++;
-					break;
-				case "REMOVE":
-					entery = in.next();
-					
-					num--;
-					break;
-				case "SEARCH":
-					entery = in.next();
-					
-					break;
-				}
-				
-				operation = in.next();
-			}
-			
-			
-			saveData(dataFile, dict);
-			System.out.print("Would you like to preform another search? (Y/N): ");
-			check = in.next();
-		}
-		*/
-		
 		
 	}
 	
@@ -168,13 +120,11 @@ public class Main {
 	 * Function used to get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
-	 * @author Hunter Mark Shaw
 	 * @param File fileIn
 	 * @param Dictionary<String, Integer> dataDict
 	 */
 	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
-		
 		try (FileInputStream inStream = new FileInputStream(fileIn);
 				ObjectInputStream input = new ObjectInputStream(inStream)) {
 			fileFlag = true;
@@ -208,7 +158,6 @@ public class Main {
 	/**
 	 * Function used by the program to save all data put into the collection from the user. 
 	 * The objects within the collection dataDict will be written to the Data.dat file.
-	 * @author Hunter Mark Shaw
 	 * @param File fileOut
 	 * @param Dictionary<String, Integer> dataDict
 	 */
@@ -244,13 +193,12 @@ public class Main {
 	/**
 	 * Function to get input directly from the user, and order the input in the logical manner they would be
 	 * executed naturally. Adding each command and argument onto the stack for use later. 
-	 * @author Hunter Mark Shaw
 	 * @param Scanner input
 	 * @param StringBuilder b
 	 * @param Stack commandQue
 	 */
 	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
-		System.out.println("Enter a command: ADD, REMOVE, PRINT");
+		System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 		b.append(' ');
 		while (!input.hasNext(";")) {
 			b.append(input.next());

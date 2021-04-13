@@ -4,7 +4,6 @@ import java.util.EmptyStackException;
 
 /**
  * Array based implementation of Stack interface.
- * @author Hunter Shaw
  *
  * @param <E>
  */
