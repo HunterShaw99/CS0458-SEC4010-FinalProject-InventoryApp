@@ -143,6 +143,27 @@ public class Main {
 		
 	}
 	
+	public static void displayDict(Dictionary<String, Integer>diction) {
+		Iterator<String> keyIt = diction.keys();
+        Iterator<Integer> valIt = diction.elements();
+        while(keyIt.hasNext()) {
+            if (!valIt.hasNext()) {
+                System.out.println("Problem with iterator, more keys than values");
+            }
+            String k = keyIt.next();
+            int v = valIt.next();
+            if (v == diction.get(k)) {
+                System.out.printf("(%s, %d) in dictionary\n", k, v);
+            } else {
+                System.out.println("Problem with iterators, key-value pair not matching.");
+            }
+                    
+        }
+        if(valIt.hasNext()) {
+            System.out.println("Problem with iterator, more values than keys");
+        }
+	}
+	
 	/**
 	 * Function used to get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
