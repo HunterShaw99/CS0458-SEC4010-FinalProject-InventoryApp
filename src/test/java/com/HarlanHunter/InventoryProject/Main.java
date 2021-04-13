@@ -52,8 +52,7 @@ public class Main {
 		/**
 		 * Main loop of the program - Implementation by @author Hunter shaw
 		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
-		 * getData(dataFile, dict);
-		 * */
+		 */
 		getData(dataFile, dict);
 		Scanner in = new Scanner(System.in);
 		StringBuilder strBuilder = new StringBuilder();
@@ -86,10 +85,8 @@ public class Main {
 						case "Q":
 							System.out.println("Program saving, then terminating...");
 							saveData(dataFile, dict);
-							System.exit(0);
+							System.exit(0); // Exit the program after the user inputs Q command. 
 					}
-					
-					
 					
 				}
 			}
