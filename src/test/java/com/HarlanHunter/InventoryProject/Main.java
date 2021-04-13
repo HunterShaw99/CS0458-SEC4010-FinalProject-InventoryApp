@@ -72,15 +72,16 @@ public class Main {
 							String k = stack.pop();
 							int v = Integer.parseInt(stack.pop());
 							dict.put(k, v);
-							System.out.println(v + " " + k + " " + command);
+							System.out.println("Added " + v + " " + k + " to inventory");
 							break;
 						case "REMOVE":
 							String k1 = stack.pop();
 							int v1 = Integer.parseInt(stack.pop());
 							dict.remove(k1);
-							System.out.println(v1 + " " + k1 + " " + command);
+							System.out.println("Removed " + v1 + " " + k1 + " to inventory");
 							break;
 						case "PRINT":
+							displayDict(dict);
 							break;
 						case "Q":
 							System.out.println("Program saving, then terminating...");
@@ -105,7 +106,7 @@ public class Main {
             String k = keyIt.next();
             int v = valIt.next();
             if (v == diction.get(k)) {
-                System.out.printf("(%s, %d) in dictionary\n", k, v);
+                System.out.printf("[ %s, %d ] in Inventory\n", k, v);
             } else {
                 System.out.println("Problem with iterators, key-value pair not matching.");
             }
