@@ -38,7 +38,7 @@ public class Main {
 		 * COMMANDS: How the user will interact with the data inside of the collections. 
 		 *  - ADD
 		 *  - REMOVE
-		 *  - SEARCH
+		 *  - PRINT
 		 *  
 		 * The ADD command will be how the user can add an element(product) to the collections and when an ADD is successful, display the updated list. 
 		 * 
@@ -59,7 +59,8 @@ public class Main {
 		if (fileFlag) {
 			//iterate over the dictionary
 			// prompt to enter a command then prompt for arguments.
-			System.out.println("File has data .. terminating for now");
+			System.out.println("Printing current data. . .");
+			displayDict(dict);
 		} else {
 			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 			while (!exitFlag) {
@@ -96,7 +97,10 @@ public class Main {
 		}
 		
 	}
-	
+	/**
+	 * Called to display to current data inside the dictionary. 
+	 * @param diction
+	 */
 	public static void displayDict(Dictionary<String, Integer>diction) {
 		Iterator<String> keyIt = diction.keys();
         Iterator<Integer> valIt = diction.elements();
@@ -119,7 +123,7 @@ public class Main {
 	}
 	
 	/**
-	 * Function used to get the Data file, if no file is found this function
+	 * get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
 	 * @param File fileIn
@@ -158,7 +162,7 @@ public class Main {
 	}
 	
 	/**
-	 * Function used by the program to save all data put into the collection from the user. 
+	 * used by the program to save all data put into the collection from the user. 
 	 * The objects within the collection dataDict will be written to the Data.dat file.
 	 * @param File fileOut
 	 * @param Dictionary<String, Integer> dataDict
@@ -193,7 +197,7 @@ public class Main {
 	}
 	
 	/**
-	 * Function to get input directly from the user, and order the input in the logical manner they would be
+	 * get input directly from the user, and order the input in the logical manner they would be
 	 * executed naturally. Adding each command and argument onto the stack for use later. 
 	 * @param Scanner input
 	 * @param StringBuilder b
