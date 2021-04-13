@@ -89,8 +89,8 @@ public class Main {
 							saveData(dataFile, dict);
 							System.exit(0); // Exit the program after the user inputs Q command. 
 					}
-					System.out.println("To quit enter (Q ;)");
 				}
+				System.out.println("To quit enter (Q ;)");
 			}
 			
 		}

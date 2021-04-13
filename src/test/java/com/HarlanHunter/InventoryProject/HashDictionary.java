@@ -17,36 +17,25 @@ import java.util.NoSuchElementException;
  *
  * @author Stephen J. Sarma-Weierman
  * @author Hunter Mark Shaw
+ * @author Harlan Chandler
  */
 public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Object[] entries; //array of Nodes
+    private static final long serialVersionUID = 1L;
+    private Object[] entries; //array of Nodes
     private int size;
     private static final int DEFAULT_CAPACITY = 17;
+    private static final double THRESHOLD = 1.5;
     
     public HashDictionary() {
         this(DEFAULT_CAPACITY);
     }
     
-    
     public HashDictionary(int initialCapacity) {
-        /*
-        if (isPrime(initialCapacity)) {
-            entries = new Object[initialCapacity];
-        } else {
-            entries = new Object[nextPrime(initialCapacity)];
-        }
-        */
         entries = new Object[initialCapacity];
         size = 0;
     }
 
-    
-    
     @Override
     public Iterator<K> keys() {
         return new Iterator<K>() {
@@ -78,7 +67,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         };
     }
     
-   
     @Override
     public Iterator<V> elements() {
         return new Iterator<V>() {
@@ -109,7 +97,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         };
     }
 
-   
     @SuppressWarnings("unchecked")
     @Override
     public V get(K key) {
@@ -124,7 +111,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         return n.getValue();
     }
 
-    
     @SuppressWarnings("unchecked")
     @Override
     public V remove(K key) {
@@ -156,7 +142,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         return null;
     }
 
-    
     @Override
     public V put(K key, V value) {
         if (get(key) != null) {
@@ -172,13 +157,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         }
     }
 
-    /**
-     * Private helper method
-     * Method for adding a key,value pair to the collection.
-     * 
-     * @param K key, V value
-     * @return void
-     */
     @SuppressWarnings("unchecked")
     private void add(K key, V value) {
         Node currentNode = (Node)entries[getHashIndex(key)];
@@ -188,15 +166,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         size++;
     }
 
-    /** 
-     * Private helper method
-     * Method to get a specific node from a specified key.
-     * Calls getHashIndex method to get the index of the key, 
-     * then loops through the chain of nodes until the key is found. Returning the node at that key. 
-     * 
-     * @param K key
-     * @return Node
-     */
     @SuppressWarnings("unchecked")
     private Node getNodeForKey(K key) {
 		Node currentNode = (Node)entries[getHashIndex(key)];
@@ -209,14 +178,6 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
         return currentNode;
     }
 
-    /**
-     * Private helper method
-     * This returns an index based on the hashCode for the key object. The index
-     * must be in the bounds of the array.
-     *
-     * @param key
-     * @return index of key - calculated from key.hashCode() % capacity
-     */
     private int getHashIndex(K key) {
         int capacity = entries.length;
         int index = key.hashCode() % capacity;
@@ -262,6 +223,28 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
             p++;
         }
         return p;
+    }
+	
+        private void resizeTable(int newCapacity) {
+      if (!isPrime(newCapacity)) {
+        newCapacity = nextPrime(newCapacity);
+      }
+      Object[] oldTable = entries;
+      int oldSize = size;
+      entries = new Object[newCapacity];
+      size = 0;
+      int currentIndex = 0;
+      Node currentNode = null;
+
+      while (size < oldSize) {
+        while (currentNode == null) {
+          currentNode = (Node)oldTable[currentIndex++];
+        }
+        while (currentNode != null) {
+          add(currentNode.getKey(), currentNode.getValue());
+          currentNode = currentNode.getNext();
+        }
+      }
     }
 
     private class Node {
