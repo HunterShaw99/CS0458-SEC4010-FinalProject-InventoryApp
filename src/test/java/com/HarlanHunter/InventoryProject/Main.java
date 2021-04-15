@@ -61,8 +61,8 @@ public class Main {
 			// prompt to enter a command then prompt for arguments.
 			System.out.println("Printing current data. . .");
 			displayDict(dict);
-		} else {
 			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
+			System.out.println("To quit enter (Q ;)");
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
 				strBuilder.setLength(0);
@@ -88,10 +88,42 @@ public class Main {
 						case "Q":
 							System.out.println("Program saving, then terminating...");
 							saveData(dataFile, dict);
-							System.exit(0); // Exit the program after the user inputs Q command. 
+							exitFlag = true; // Exit the program after the user inputs Q command. 
 					}
 				}
-				System.out.println("To quit enter (Q ;)");
+			}
+		} else {
+			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
+			System.out.println("To quit enter (Q ;)");
+			while (!exitFlag) {
+				getInput(in, strBuilder, stack);
+				strBuilder.setLength(0);
+				while (!stack.empty()) {
+					//Perform queries from the stack & repeat until user exits program.
+					String command = stack.pop();
+					switch (command) {
+						case "ADD":
+							String k = stack.pop();
+							int v = Integer.parseInt(stack.pop());
+							dict.put(k, v);
+							System.out.println("Added " + v + " " + k + " to inventory");
+							break;
+						case "REMOVE":
+							String k1 = stack.pop();
+							int v1 = Integer.parseInt(stack.pop());
+							dict.remove(k1);
+							System.out.println("Removed " + v1 + " " + k1 + " to inventory");
+							break;
+						case "PRINT":
+							displayDict(dict);
+							break;
+						case "Q":
+							System.out.println("Program saving, then terminating...");
+							saveData(dataFile, dict);
+							exitFlag = true; // Exit the program after the user inputs Q command. 
+					}
+				}
+				
 			}
 			
 		}
