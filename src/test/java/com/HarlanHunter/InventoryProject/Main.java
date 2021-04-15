@@ -17,16 +17,6 @@ public class Main {
 	static boolean exitFlag = false;
 	
 	public static void main(String[] args) {
-		
-		
-		/*		########	TESTING COLLECTIONS 	########
-		dict.put("Coffee", 12);
-		dict.put("WATER", 79);
-		dict.put("LaVa", 64);
-		*/
-		Dictionary<String, Integer> dict = new HashDictionary<>();
-		Stack<String> stack = new AStack<>();
-		
 		/*
 		 * Main loop of program should check always before anything if there is a data file. This data file is where the products
 		 * within the collections will be stored. If the program checks and there is no data file create a new one, if there is a data file 
@@ -53,6 +43,8 @@ public class Main {
 		 * Main loop of the program
 		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
 		 */
+		Dictionary<String, Integer> dict = new HashDictionary<>();
+		Stack<String> stack = new AStack<>();
 		getData(dataFile, dict);
 		Scanner in = new Scanner(System.in);
 		StringBuilder strBuilder = new StringBuilder();
@@ -129,6 +121,7 @@ public class Main {
 		}
 		
 	}
+	
 	/**
 	 * Called to display to current data inside the dictionary. 
 	 * @param diction
@@ -290,6 +283,4 @@ public class Main {
 		}
 	}
 	
-	
-
 }
