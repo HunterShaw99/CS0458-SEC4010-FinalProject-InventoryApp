@@ -23,9 +23,10 @@ import java.io.FileNotFoundException;
  */
 public class Main {
 
-	static File dataFile = new File("src/test/res/local/Data.dat");
-	static boolean fileFlag = false;
-	static boolean exitFlag = false;
+	private static File dataFile = new File("src/test/res/local/Data.dat");
+	private static boolean fileFlag = false;
+	private static boolean exitFlag = false;
+	private static final Scanner in = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		/*
@@ -52,7 +53,6 @@ public class Main {
 		Dictionary<String, Integer> dict = new HashDictionary<>();
 		Stack<String> stack = new AStack<>();
 		getData(dataFile, dict);
-		Scanner in = new Scanner(System.in);
 		StringBuilder strBuilder = new StringBuilder();
 		/*
 		 * Check the fileFlag which is set to true or false from the getData() function
