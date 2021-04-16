@@ -36,13 +36,8 @@ public class Main {
 		 * 
 		 * PRINT is a command useful for printing out the current Inventory of products inside the dictionary.
 		 */
-		//TODO: add the commands for the user to easily navigate through the collections and interact with the data.
-		//TODO: add the main loop for the user which will handle all command inputs, and check for proper command syntax throughout the program life.
 		
-		/**
-		 * Main loop of the program
-		 * Will use two stacks one for the commands entered by the user the next for the arguments of each command. 
-		 */
+		//Main loop of the program
 		Dictionary<String, Integer> dict = new HashDictionary<>();
 		Stack<String> stack = new AStack<>();
 		getData(dataFile, dict);
@@ -124,18 +119,19 @@ public class Main {
 	
 	/**
 	 * Called to display to current data inside the dictionary. 
-	 * @param diction
+	 * @param inventory A linked chain dictionary which contains
+	 * 			the products(Key) and quantity(Value)
 	 */
-	public static void displayDict(Dictionary<String, Integer>diction) {
-		Iterator<String> keyIt = diction.keys();
-        Iterator<Integer> valIt = diction.elements();
+	public static void displayDict(Dictionary<String, Integer>inventory) {
+		Iterator<String> keyIt = inventory.keys();
+        Iterator<Integer> valIt = inventory.elements();
         while(keyIt.hasNext()) {
             if (!valIt.hasNext()) {
                 System.out.println("Problem with iterator, more keys than values");
             }
             String k = keyIt.next();
             int v = valIt.next();
-            if (v == diction.get(k)) {
+            if (v == inventory.get(k)) {
                 System.out.printf("[ %s, %d ] in Inventory\n", k, v);
             } else {
                 System.out.println("Problem with iterators, key-value pair not matching.");
@@ -151,19 +147,21 @@ public class Main {
 	 * get the Data file, if no file is found this function
 	 * will create the Data file. The data file is used to store the information 
 	 * preserved in the data structures. 
-	 * @param File fileIn
-	 * @param Dictionary<String, Integer> dataDict
+	 * @param filePath A constant directory path of where the Data.dat file will
+	 * 			be stored for the program. 
+	 * @param inventory A linked chain dictionary which contains
+	 * 			the products(Key) and quantity(Value)
 	 */
-	public static void getData(File fileIn, Dictionary<String, Integer> dataDict) {
+	public static void getData(File filePath, Dictionary<String, Integer> inventory) {
 		 //Check if the Data.dat file exists, if so read from the file adding data into collections. 
-		try (FileInputStream inStream = new FileInputStream(fileIn);
+		try (FileInputStream inStream = new FileInputStream(filePath);
 				ObjectInputStream input = new ObjectInputStream(inStream)) {
 			fileFlag = true;
 			System.out.println("File is there and is ready to be read from!");
 			while(inStream.available() > 0) {
 				String k = (String)input.readObject();
 				Integer v = (Integer) input.readObject();
-				dataDict.put(k, v);
+				inventory.put(k, v);
 			}
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
@@ -171,7 +169,7 @@ public class Main {
 		catch (FileNotFoundException ex) {
 			System.err.println("No previous data found!, Creating a new inventory.");
 			try  {
-				fileIn.createNewFile();
+				filePath.createNewFile();
 				fileFlag = false;
 			} catch(IOException e) {
 				e.printStackTrace();
@@ -189,13 +187,15 @@ public class Main {
 	/**
 	 * used by the program to save all data put into the collection from the user. 
 	 * The objects within the collection dataDict will be written to the Data.dat file.
-	 * @param File fileOut
-	 * @param Dictionary<String, Integer> dataDict
+	 * @param filePath A constant directory path of where the Data.dat file will
+	 * 			be stored for the program.
+	 * @param inventory A linked chain dictionary which contains
+	 * 			the products(Key) and quantity(Value)
 	 */
-	public static void saveData(File fileOut, Dictionary<String, Integer> dataDict) {
-		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(fileOut))) {
-			Iterator<String> keyIt = dataDict.keys();
-	        Iterator<Integer> valIt = dataDict.elements();
+	public static void saveData(File filePath, Dictionary<String, Integer> inventory) {
+		try (ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(filePath))) {
+			Iterator<String> keyIt = inventory.keys();
+	        Iterator<Integer> valIt = inventory.elements();
 	        while(keyIt.hasNext()) {
 	            if (!valIt.hasNext()) {
 	                System.out.println("Problem with iterator, more keys than values");
@@ -205,7 +205,7 @@ public class Main {
 	            int v = valIt.next();
 	            output.writeObject(k);
 	            output.writeObject(v);
-	            if (v != dataDict.get(k)) {
+	            if (v != inventory.get(k)) {
 	                System.out.printf("(%s, %d) Do not match, Error saving data!\n", k, v);
 	                break;
 	            }
@@ -224,18 +224,20 @@ public class Main {
 	/**
 	 * get input directly from the user, and order the input in the logical manner they would be
 	 * executed naturally. Adding each command and argument onto the stack for use later. 
-	 * @param Scanner input
-	 * @param StringBuilder b
-	 * @param Stack commandQue
+	 * @param input Scanner used to get input from the keyBoard
+	 * @param strBuilder StringBuilder 
+	 * @param commandQue Stack that should be empty, and is used to hold the
+	 * 			commands and arguments from the user. Will be emptied in the
+	 * 			main loop before getInput is ever called again. 
 	 */
-	public static void getInput(Scanner input, StringBuilder b, Stack<String> commandQue) {
-		b.append(' ');
+	public static void getInput(Scanner input, StringBuilder strBuilder, Stack<String> commandQue) {
+		strBuilder.append(' ');
 		while (!input.hasNext(";")) {
-			b.append(input.next());
-			b.append(' ');
+			strBuilder.append(input.next());
+			strBuilder.append(' ');
 		}
 		input.nextLine();
-		char currentQuery[] = b.toString().toCharArray();
+		char currentQuery[] = strBuilder.toString().toCharArray();
 		// Reverse array to mimic the order the commands will be executed on the stack.
 		// Add elements from array to stack & leave function.
 		int i = 0;
