@@ -43,18 +43,31 @@ public class Main {
 		getData(dataFile, dict);
 		Scanner in = new Scanner(System.in);
 		StringBuilder strBuilder = new StringBuilder();
+		/*
+		 * Check the fileFlag which is set to true or false from the getData() function
+		 * call that happens above. 
+		 * If fileFlag is true then there is previous data and we will keep this data.
+		 * First we loop through the data already in the Data.dat file. Then enter
+		 * the main input loop of the program and stay there till the quit command
+		 * is entered. When Q is read set exitFlag to true and end program. 
+		 */
 		if (fileFlag) {
 			//iterate over the dictionary
-			// prompt to enter a command then prompt for arguments.
 			System.out.println("Printing current data. . .");
 			displayDict(dict);
+			// prompt to enter a command then prompt for arguments.
 			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 			System.out.println("To quit enter (Q ;)");
+			/*
+			 * Loop calling getInput() & performing query(s) from the stack. 
+			 * Do this simple loop until the quit command Q is entered. When
+			 * that command is entered check the exitFlag to true, write the data
+			 * from the dictionary dict and end the program. 
+			 */
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
 				strBuilder.setLength(0);
 				while (!stack.empty()) {
-					//Perform queries from the stack & repeat until user exits program.
 					String command = stack.pop();
 					switch (command) {
 						case "ADD":
@@ -75,18 +88,34 @@ public class Main {
 						case "Q":
 							System.out.println("Program saving, then terminating...");
 							saveData(dataFile, dict);
-							exitFlag = true; // Exit the program after the user inputs Q command. 
+							exitFlag = true; 
 					}
 				}
 			}
-		} else {
+		} 
+		/*
+		 * Check the fileFlag which is set to true or false from the getData() function
+		 * call that happens above. 
+		 * If fileFlag is false then there is on previous data and no file Data.dat.
+		 * So from the getData() call above we created the Data.dat file and checked
+		 * fileFlag to false as there was no previous file when getData() was last called and checked.
+		 * From here enter the input loop of the program. Stay there until the quit
+		 * command is entered. When Q is read then we save the data to Data.dat and
+		 * check the exitFlag to true which will end the program. 
+		 */
+		else {
 			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
 			System.out.println("To quit enter (Q ;)");
+			/*
+			 * Loop calling getInput() & performing query(s) from the stack. 
+			 * Do this simple loop until the quit command Q is entered. When
+			 * that command is entered check the exitFlag to true, write the data
+			 * from the dictionary dict and end the program. 
+			 */
 			while (!exitFlag) {
 				getInput(in, strBuilder, stack);
 				strBuilder.setLength(0);
 				while (!stack.empty()) {
-					//Perform queries from the stack & repeat until user exits program.
 					String command = stack.pop();
 					switch (command) {
 						case "ADD":
@@ -107,7 +136,7 @@ public class Main {
 						case "Q":
 							System.out.println("Program saving, then terminating...");
 							saveData(dataFile, dict);
-							exitFlag = true; // Exit the program after the user inputs Q command. 
+							exitFlag = true; 
 					}
 				}
 				
