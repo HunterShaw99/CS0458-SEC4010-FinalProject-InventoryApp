@@ -1,7 +1,8 @@
 package src.test.java.com.HarlanHunter.InventoryProject;
 /**
  * interface stack<E> for the ADT stack. Not a vector stack, just a original ole'stack. 
- *
+ * @author Hunter Mark Shaw
+ * @uthor Harlan Chandler
  * @param <E>
  */
 public interface Stack<E> {

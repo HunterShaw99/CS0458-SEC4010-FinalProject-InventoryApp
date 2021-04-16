@@ -4,7 +4,8 @@ import java.util.EmptyStackException;
 
 /**
  * Array based implementation of Stack interface.
- *
+ * @author Hunter Mark Shaw
+ * @author Harlan Chandler
  * @param <E>
  */
 public class AStack<E> implements Stack<E> {

@@ -9,13 +9,6 @@ import java.util.NoSuchElementException;
  * the array contain Nodes, which form a chain of all key-value pairs with the
  * same key hash index.
  *
- * There's no mechanism to resize the array here. There's also no real need, as
- * a table entry will contain a linked chain which may have multiple nodes.
- *
- * Some things to think about: - How would you implement the iterators for this
- * collection? - What is the runtime complexity of the methods?
- *
- * @author Stephen J. Sarma-Weierman
  * @author Hunter Mark Shaw
  * @author Harlan Chandler
  */
