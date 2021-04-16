@@ -10,6 +10,17 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
+
+/**
+ * Main area of the inventory project. This is where the core logic of
+ * the program is at. This logic includes binary file I/O & checks for
+ * input from the user with the Dictionary & Stack objects instantiated
+ * here for holding data. 
+ * 
+ * @author Hunter Mark Shaw
+ * @author Harlan Chandler
+ *
+ */
 public class Main {
 
 	static File dataFile = new File("src/test/res/local/Data.dat");
