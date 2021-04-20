@@ -66,93 +66,44 @@ public class Main {
 			//iterate over the dictionary
 			System.out.println("Printing current data. . .");
 			displayDict(dict);
-			// prompt to enter a command then prompt for arguments.
-			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
-			System.out.println("To quit enter (Q ;)");
-			/*
-			 * Loop calling getInput() & performing query(s) from the stack. 
-			 * Do this simple loop until the quit command Q is entered. When
-			 * that command is entered check the exitFlag to true, write the data
-			 * from the dictionary dict and end the program. 
-			 */
-			while (!exitFlag) {
-				getInput(in, strBuilder, stack);
-				strBuilder.setLength(0);
-				while (!stack.empty()) {
-					String command = stack.pop();
-					switch (command) {
-						case "ADD":
-							String k = stack.pop();
-							int v = Integer.parseInt(stack.pop());
-							dict.put(k, v);
-							System.out.println("Added " + v + " " + k + " to inventory");
-							break;
-						case "REMOVE":
-							String k1 = stack.pop();
-							int v1 = Integer.parseInt(stack.pop());
-							dict.remove(k1);
-							System.out.println("Removed " + v1 + " " + k1 + " to inventory");
-							break;
-						case "PRINT":
-							displayDict(dict);
-							break;
-						case "Q":
-							System.out.println("Program saving, then terminating...");
-							saveData(dataFile, dict);
-							exitFlag = true; 
-					}
-				}
-			}
 		} 
-		/*
-		 * Check the fileFlag which is set to true or false from the getData() function
-		 * call that happens above. 
-		 * If fileFlag is false then there is on previous data and no file Data.dat.
-		 * So from the getData() call above we created the Data.dat file and checked
-		 * fileFlag to false as there was no previous file when getData() was last called and checked.
-		 * From here enter the input loop of the program. Stay there until the quit
-		 * command is entered. When Q is read then we save the data to Data.dat and
-		 * check the exitFlag to true which will end the program. 
-		 */
-		else {
-			System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
-			System.out.println("To quit enter (Q ;)");
-			/*
-			 * Loop calling getInput() & performing query(s) from the stack. 
-			 * Do this simple loop until the quit command Q is entered. When
-			 * that command is entered check the exitFlag to true, write the data
-			 * from the dictionary dict and end the program. 
-			 */
-			while (!exitFlag) {
-				getInput(in, strBuilder, stack);
-				strBuilder.setLength(0);
-				while (!stack.empty()) {
-					String command = stack.pop();
-					switch (command) {
-						case "ADD":
-							String k = stack.pop();
-							int v = Integer.parseInt(stack.pop());
-							dict.put(k, v);
-							System.out.println("Added " + v + " " + k + " to inventory");
-							break;
-						case "REMOVE":
-							String k1 = stack.pop();
-							int v1 = Integer.parseInt(stack.pop());
-							dict.remove(k1);
-							System.out.println("Removed " + v1 + " " + k1 + " to inventory");
-							break;
-						case "PRINT":
-							displayDict(dict);
-							break;
-						case "Q":
-							System.out.println("Program saving, then terminating...");
-							saveData(dataFile, dict);
-							exitFlag = true; 
-					}
-				}
-				
-			}
 			
+		// prompt to enter a command & arguments.
+		System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
+		System.out.println("To quit enter (Q ;)");
+		/*
+		 * Loop calling getInput() & performing query(s) from the stack. 
+		 * Do this simple loop until the quit command Q is entered. When
+		 * that command is entered check the exitFlag to true, write the data
+		 * from the dictionary dict and end the program. 
+		 */
+		while (!exitFlag) {
+			getInput(in, strBuilder, stack);
+			strBuilder.setLength(0);
+			while (!stack.empty()) {
+				String command = stack.pop();
+				switch (command) {
+					case "ADD":
+						String k = stack.pop();
+						int v = Integer.parseInt(stack.pop());
+						dict.put(k, v);
+						System.out.println("Added " + v + " " + k + " to inventory");
+						break;
+					case "REMOVE":
+						String k1 = stack.pop();
+						int v1 = Integer.parseInt(stack.pop());
+						dict.remove(k1);
+						System.out.println("Removed " + v1 + " " + k1 + " to inventory");
+						break;
+					case "PRINT":
+						displayDict(dict);
+						break;
+					case "Q":
+						System.out.println("Program saving, then terminating...");
+						saveData(dataFile, dict);
+						exitFlag = true; 
+				}
+			}
 		}
 		
 	}
@@ -172,7 +123,7 @@ public class Main {
             String k = keyIt.next();
             int v = valIt.next();
             if (v == inventory.get(k)) {
-                System.out.printf("[ %s, %d ] in Inventory\n", k, v);
+                System.out.printf("[ %s, %d ] in inventory\n", k, v);
             } else {
                 System.out.println("Problem with iterators, key-value pair not matching.");
             }
@@ -207,7 +158,7 @@ public class Main {
 			e.printStackTrace();
 		}
 		catch (FileNotFoundException ex) {
-			System.err.println("No previous data found!, Creating a new inventory.");
+			System.err.println("No previous data found!, Creating a new inventory.\n");
 			try  {
 				filePath.createNewFile();
 				fileFlag = false;
