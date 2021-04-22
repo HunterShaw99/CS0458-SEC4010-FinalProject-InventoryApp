@@ -32,6 +32,7 @@ Group: Harlan Chandler, Hunter Shaw
 	this persistence mechanism. 
 
 <b> Personal thoughts </b>
+
 	Hunter Shaw: I enjoyed creating the project a lot and feel it has helped better my 
 	programming specifically in the documentation/commenting area. Which is always great
 	to enjoy doing something and gain valuable knowledge in the process as well. There
