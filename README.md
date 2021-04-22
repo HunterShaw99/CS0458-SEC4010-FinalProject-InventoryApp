@@ -34,15 +34,15 @@ Group: Harlan Chandler, Hunter Shaw
 <b> Personal thoughts </b>
 
 	Hunter Shaw: I enjoyed creating the project a lot and feel it has helped better my 
-	programming specifically in the documentation/commenting area. Which is always great
+	programming specifically in the documentation/commenting area. It is always great
 	to enjoy doing something and gain valuable knowledge in the process as well. There
 	is naturally a lot I would like to change/add to the project. After this busy end to
-	a very unique semester I would like to add GUI to the project with javaFX. Additionally,
+	a very unique semester, I would like to add GUI to the project with javaFX. Additionally,
 	I would like to add more commands for the user to use. Two specific commands that I feel
 	are important are SORT & UPDATE. The SORT command would have two options ASC & DESC which
 	would sort in ascending or descending order. Also, the UPDATE command would be used to 
 	change to current quantity of the product inside the Dictionary. Further, I would like to
-	change the persistence mechanism of the project. Rather then just simple binary I/O using
-	MySQL & JDBC to use a fully functioning data base. Overall, I am happy with the current 
+	change the persistence mechanism of the project. Rather than just simple binary I/O using
+	MySQL & JDBC to use a fully functioning database. Overall, I am happy with the current 
 	state of the project and in time will work towards adding these desired additions. 
 
