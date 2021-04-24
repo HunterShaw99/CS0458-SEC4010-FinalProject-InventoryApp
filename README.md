@@ -2,7 +2,7 @@
 
 <b> Due:Friday, April 23, 11:59pm </b>
 
-## Assignment details -
+## Assignment details
 
 	Final project for Data Structures and Files
 	The final project has to implement two data structures that were discussed in class. 
