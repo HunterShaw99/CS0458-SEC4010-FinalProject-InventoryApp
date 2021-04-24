@@ -2,7 +2,7 @@
 
 <b> Due:Friday, April 23, 11:59pm </b>
 
-Assignment details -
+## Assignment details -
 
 	Final project for Data Structures and Files
 	The final project has to implement two data structures that were discussed in class. 
@@ -14,7 +14,12 @@ Assignment details -
 	
 Group: Harlan Chandler, Hunter Shaw
 
-<b> Project overview </b>
+## Project overview 
+
+The workspace had two directories
+
+- `src/test/java/com/HarlanHunter/InventoryProject`: This path is for source files
+- `src/test/res/local`: This path is for file I/O
 
 	The overall concept for this final project was to make some inventory management 
 	program. The idea was to make a program that could be used for warehouses and others
@@ -31,7 +36,7 @@ Group: Harlan Chandler, Hunter Shaw
 	form of persistence to the program. The ending decision was to use object I/O to create
 	this persistence mechanism. 
 
-<b> Personal thoughts </b>
+## Personal thoughts
 
 	Hunter Shaw: I enjoyed creating the project a lot and feel it has helped better my 
 	programming specifically in the documentation/commenting area. It is always great
