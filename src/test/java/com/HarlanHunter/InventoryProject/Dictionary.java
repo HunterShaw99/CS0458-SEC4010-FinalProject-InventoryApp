@@ -4,7 +4,7 @@ import java.util.Iterator;
 /**
  * Interface for Dictionary ADT. Your HashDictionary class should implement
  * this interface.
- * @author Stephen J. Sarma-Weierman
+ * @author Hunter M Shaw
  */
 public interface Dictionary<K,V> {
     /**
@@ -51,6 +51,13 @@ public interface Dictionary<K,V> {
      * @return 
      */
     public V put(K key, V value);
+    
+    /**
+     * 
+     * @param key
+     * @param value
+     */
+    public void updateValue(K key, V value);
     
     /**
      * You know what this does.

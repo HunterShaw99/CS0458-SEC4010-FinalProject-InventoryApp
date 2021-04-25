@@ -69,7 +69,8 @@ public class Main {
 		} 
 			
 		// prompt to enter a command & arguments.
-		System.out.println("Enter a command in this structure (ADD/REMOVE/PRINT 'product_name' 'amount' ';')");
+		System.out.println("Enter a command in this structure (command name quantity ;)");
+		System.out.println("Commands: ADD, REMOVE, PRINT, Q");
 		System.out.println("To quit enter (Q ;)");
 		/*
 		 * Loop calling getInput() & performing query(s) from the stack. 
@@ -97,6 +98,12 @@ public class Main {
 						break;
 					case "PRINT":
 						displayDict(dict);
+						break;
+					case "UPDATE":
+						String k2 = stack.pop();
+						int v2 = Integer.parseInt(stack.pop());
+						System.out.println("Updating " + k2 + " amount to: " + v2);
+						dict.updateValue(k2, v2);
 						break;
 					case "Q":
 						System.out.println("Program saving, then terminating...");

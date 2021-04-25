@@ -149,6 +149,11 @@ public class HashDictionary<K, V> implements Dictionary<K, V>, Serializable {
             throw new NullPointerException(); // Throws NullPointerException as key or value is null.
         }
     }
+    
+    public void updateValue(K key, V value) {
+    	Node currentN = getNodeForKey(key);
+    	currentN.setValue(value);
+    }
 
     @SuppressWarnings("unchecked")
     private void add(K key, V value) {
