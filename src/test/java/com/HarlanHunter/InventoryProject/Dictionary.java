@@ -61,14 +61,14 @@ public interface Dictionary<K,V> {
     public void updateValue(K key, V value);
     
     /**
-     * You know what this does.
-     * @return 
+     * Checks if collection is empty.
+     * @return boolean value
      */
     public boolean isEmpty();
     
     /**
-     * You know what this does.
-     * @return 
+     * Check collections current size.
+     * @return int value - total size of collection
      */
     public int size();
 }
