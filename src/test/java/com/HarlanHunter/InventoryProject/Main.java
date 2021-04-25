@@ -67,10 +67,10 @@ public class Main {
 			System.out.println("Printing current data. . .");
 			displayDict(dict);
 		} 
-			
+		// UPDATE key value - key(the item you want to change) value(the quantity to change to in the collection).
 		// prompt to enter a command & arguments.
 		System.out.println("Enter a command in this structure (command name quantity ;)");
-		System.out.println("Commands: ADD, REMOVE, PRINT, Q");
+		System.out.println("Commands: ADD, REMOVE, UPDATE, PRINT, Q");
 		System.out.println("To quit enter (Q ;)");
 		/*
 		 * Loop calling getInput() & performing query(s) from the stack. 
