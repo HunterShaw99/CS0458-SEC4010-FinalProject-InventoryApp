@@ -53,7 +53,8 @@ public interface Dictionary<K,V> {
     public V put(K key, V value);
     
     /**
-     * 
+     * If the value of a node in the collection needs changed, get the 
+     * Node of the key and set the value of the node to value.
      * @param key
      * @param value
      */
