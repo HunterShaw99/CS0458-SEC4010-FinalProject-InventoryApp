@@ -16,7 +16,7 @@ Group: Harlan Chandler, Hunter Shaw
 
 ## Project overview 
 
-The workspace had two directories
+The workspace has two directories
 
 - `src/test/java/com/HarlanHunter/InventoryProject`: This path is for source files
 - `src/test/res/local`: This path is for file I/O
