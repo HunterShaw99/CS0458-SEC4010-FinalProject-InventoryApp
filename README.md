@@ -51,3 +51,7 @@ change the persistence mechanism of the project. Rather than just simple binary 
 MySQL & JDBC to use a fully functioning database. Overall, I am happy with the current 
 state of the project and in time will work towards adding these desired additions. 
 
+## Contact
+
+Hunter Shaw: hms75@pitt.edu
+Harlan Chandler: 
