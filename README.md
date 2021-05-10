@@ -21,20 +21,20 @@ The workspace has two directories
 - `src/test/java/com/HarlanHunter/InventoryProject`: This path is for source files
 - `src/test/res/local`: This path is for file I/O
 
-	The overall concept for this final project was to make some inventory management 
-	program. The idea was to make a program that could be used for warehouses and others
-	to maintain and track products. With this overall concept in mind the process of
-	implementation came. From the ADT's discussed in class the group agreed that dictionary
-	is a great data structure to use. The second ADT was harder to consider but after
-	some testing and discussion the stack was our second data structure we would implement. 
-	So, the dictionary is the main backbone of the program. Our implementation for
-	the project is a linked chain dictionary of nodes. This dictionary is the backbone of
-	the program and holds all the products and quantities for an inventory in some industry.
-	The second ADT we implemented was stack. We chose to not use a vector stack and instead
-	implement an array based stack which is used to handle the interactions between the
-	user and the data inside of the dictionary. Additionally, there needs to be some
-	form of persistence to the program. The ending decision was to use object I/O to create
-	this persistence mechanism. 
+The overall concept for this final project was to make some inventory management 
+program. The idea was to make a program that could be used for warehouses and others
+to maintain and track products. With this overall concept in mind the process of
+implementation came. From the ADT's discussed in class the group agreed that dictionary
+is a great data structure to use. The second ADT was harder to consider but after
+some testing and discussion the stack was our second data structure we would implement. 
+So, the dictionary is the main backbone of the program. Our implementation for
+the project is a linked chain dictionary of nodes. This dictionary is the backbone of
+the program and holds all the products and quantities for an inventory in some industry.
+The second ADT we implemented was stack. We chose to not use a vector stack and instead
+implement an array based stack which is used to handle the interactions between the
+user and the data inside of the dictionary. Additionally, there needs to be some
+form of persistence to the program. The ending decision was to use object I/O to create
+this persistence mechanism. 
 
 ## Personal thoughts
 
