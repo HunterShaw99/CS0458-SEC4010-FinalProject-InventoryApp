@@ -109,6 +109,7 @@ public class Main {
 						System.out.println("Program saving, then terminating...");
 						saveData(dataFile, dict);
 						exitFlag = true; 
+						break;
 					default:
 						stack.pop();
 						stack.pop();
