@@ -11,19 +11,19 @@ public interface Item {
      *
      * @return The Products name.
      */
-    public String getName();
+    String getName();
 
     /**
      *
      * @return The Products serial number.
      */
-    public String getSerialNum();
+    String getSerialNum();
 
     /**
      *
      * @return the quantity of the Product.
      */
-    public int getQuantity();
+    int getQuantity();
 
 
 }

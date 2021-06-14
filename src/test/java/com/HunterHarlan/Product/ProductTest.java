@@ -9,7 +9,7 @@ class ProductTest {
 
     @Test
     void testName() {
-        assert case1.getName() == "Toilet Paper";
+        assert case1.getName().equals("Toilet Paper");
     }
 
     @Test
