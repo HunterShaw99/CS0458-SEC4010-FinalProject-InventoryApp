@@ -8,8 +8,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public class LinkedHashMap<K, V> implements ConcurrentMap<K, V> {
-
+public class LinkedHashMap<K, Product> implements Map<K, Product> {
 
     @Override
     public int size() {
@@ -32,22 +31,22 @@ public class LinkedHashMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
-    public V get(Object o) {
+    public Product get(Object o) {
         return null;
     }
 
     @Override
-    public V put(K k, V v) {
+    public Product put(K k, Product product) {
         return null;
     }
 
     @Override
-    public V remove(Object o) {
+    public Product remove(Object o) {
         return null;
     }
 
     @Override
-    public void putAll(Map<? extends K, ? extends V> map) {
+    public void putAll(Map<? extends K, ? extends Product> map) {
 
     }
 
@@ -62,68 +61,67 @@ public class LinkedHashMap<K, V> implements ConcurrentMap<K, V> {
     }
 
     @Override
-    public Collection<V> values() {
+    public Collection<Product> values() {
         return null;
     }
 
     @Override
-    public Set<Entry<K, V>> entrySet() {
+    public Set<Entry<K, Product>> entrySet() {
         return null;
     }
 
     @Override
-    public V getOrDefault(Object key, V defaultValue) {
-        return ConcurrentMap.super.getOrDefault(key, defaultValue);
+    public Product getOrDefault(Object key, Product defaultValue) {
+        return Map.super.getOrDefault(key, defaultValue);
     }
 
     @Override
-    public void forEach(BiConsumer<? super K, ? super V> action) {
-        ConcurrentMap.super.forEach(action);
+    public void forEach(BiConsumer<? super K, ? super Product> action) {
+        Map.super.forEach(action);
     }
 
     @Override
-    public V putIfAbsent(K k, V v) {
-        return null;
+    public void replaceAll(BiFunction<? super K, ? super Product, ? extends Product> function) {
+        Map.super.replaceAll(function);
     }
 
     @Override
-    public boolean remove(Object o, Object o1) {
-        return false;
+    public Product putIfAbsent(K key, Product value) {
+        return Map.super.putIfAbsent(key, value);
     }
 
     @Override
-    public boolean replace(K k, V v, V v1) {
-        return false;
+    public boolean remove(Object key, Object value) {
+        return Map.super.remove(key, value);
     }
 
     @Override
-    public V replace(K k, V v) {
-        return null;
+    public boolean replace(K key, Product oldValue, Product newValue) {
+        return Map.super.replace(key, oldValue, newValue);
     }
 
     @Override
-    public void replaceAll(BiFunction<? super K, ? super V, ? extends V> function) {
-        ConcurrentMap.super.replaceAll(function);
+    public Product replace(K key, Product value) {
+        return Map.super.replace(key, value);
     }
 
     @Override
-    public V computeIfAbsent(K key, Function<? super K, ? extends V> mappingFunction) {
-        return ConcurrentMap.super.computeIfAbsent(key, mappingFunction);
+    public Product computeIfAbsent(K key, Function<? super K, ? extends Product> mappingFunction) {
+        return Map.super.computeIfAbsent(key, mappingFunction);
     }
 
     @Override
-    public V computeIfPresent(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-        return ConcurrentMap.super.computeIfPresent(key, remappingFunction);
+    public Product computeIfPresent(K key, BiFunction<? super K, ? super Product, ? extends Product> remappingFunction) {
+        return Map.super.computeIfPresent(key, remappingFunction);
     }
 
     @Override
-    public V compute(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
-        return ConcurrentMap.super.compute(key, remappingFunction);
+    public Product compute(K key, BiFunction<? super K, ? super Product, ? extends Product> remappingFunction) {
+        return Map.super.compute(key, remappingFunction);
     }
 
     @Override
-    public V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction) {
-        return ConcurrentMap.super.merge(key, value, remappingFunction);
+    public Product merge(K key, Product value, BiFunction<? super Product, ? super Product, ? extends Product> remappingFunction) {
+        return Map.super.merge(key, value, remappingFunction);
     }
-
 }
