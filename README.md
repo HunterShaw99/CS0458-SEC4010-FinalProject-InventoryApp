@@ -1,4 +1,4 @@
-#Inventory Application Project
+# Inventory Application Project
 **Project overview:** This project is based upon the CS0458-SEC4010-FinalProject. There are considerable changes to
 this project compared to its previous counter-part. \
 **Change List:**
