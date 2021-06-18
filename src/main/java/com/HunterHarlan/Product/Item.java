@@ -28,19 +28,19 @@ public interface Item {
 
     /**
      * Sets the name of the product that invokes the method to the String value of the parameter.
-     * @param name
+     * @param name String value that represents the name.
      */
     void setName(String name);
 
     /**
      * Sets the serial number of the product that invokes the method to the value of the parameter.
-     * @param serialNum
+     * @param serialNum String value that represents the serial number.
      */
     void setSerialNum(String serialNum);
 
     /**
      * Sets the quantity of the product that invokes the method to the value of the parameter.
-     * @param quantity
+     * @param quantity int value which represents quantity
      */
     void setQuantity(int quantity);
 
