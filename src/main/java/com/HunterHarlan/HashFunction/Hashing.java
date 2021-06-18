@@ -5,6 +5,6 @@ package com.HunterHarlan.HashFunction;
  * @author Hunter Shaw
  * @version 0.1
  */
-public class Hashing {
+public abstract class Hashing {
 
 }

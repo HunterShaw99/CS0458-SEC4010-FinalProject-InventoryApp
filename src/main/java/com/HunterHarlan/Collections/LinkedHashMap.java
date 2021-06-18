@@ -1,5 +1,7 @@
 package com.HunterHarlan.Collections;
 
+import com.HunterHarlan.HashFunction.Hashing;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
@@ -15,7 +17,7 @@ import java.util.function.Function;
  * @author Hunter Shaw
  * @version 0.1
  */
-public class LinkedHashMap<K, Product> implements Map<K, Product>, Serializable {
+public class LinkedHashMap<K, Product> extends Hashing implements Map<K, Product>, Serializable {
     private int size;
     private Object[] entries;
 
