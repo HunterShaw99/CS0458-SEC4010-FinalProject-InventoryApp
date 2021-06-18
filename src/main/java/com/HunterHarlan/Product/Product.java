@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 /**
  * Class which will define a item in the system as a product.
+ *
+ * Current functionality Product
+ *
  * @author Hunter Shaw
  * @version 0.1
  */
@@ -32,4 +35,21 @@ public class Product implements Serializable, Item {
     public int getQuantity() {
         return quantity;
     }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum;
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+
 }
