@@ -36,7 +36,12 @@ user and the data inside of the dictionary. Additionally, there needs to be some
 form of persistence to the program. The ending decision was to use object I/O to create
 this persistence mechanism. 
 
-## Personal thoughts
+##### Tools Used
+* Java
+* Eclipse IDE
+* Git
+
+##### Personal thoughts
 
 Hunter Shaw: I enjoyed creating the project a lot and feel it has helped better my 
 programming specifically in the documentation/commenting area. It is always great
