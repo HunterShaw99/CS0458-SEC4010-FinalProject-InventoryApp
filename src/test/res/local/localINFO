@@ -1,2 +1,0 @@
-property files for localization are to go here. We are also going to use this directory to hold the Data.dat file for our project.
-This is due to not having time to connect a database to the project to store the data. We will instead just use binary I/O and write/read data from a file here. 
