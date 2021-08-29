@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CS0458-SEC4010-FinalProject-InventoryApp" />
+        <module name="InventoryApp" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CS0458-SEC4010-FinalProject-InventoryApp" target="11" />
+      <module name="InventoryApp" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

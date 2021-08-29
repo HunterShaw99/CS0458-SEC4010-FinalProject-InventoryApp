@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CS0458-SEC4010-FinalProject-InventoryApp.iml" filepath="$PROJECT_DIR$/CS0458-SEC4010-FinalProject-InventoryApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InventoryApp.iml" filepath="$PROJECT_DIR$/InventoryApp.iml" />
     </modules>
   </component>
 </project>
