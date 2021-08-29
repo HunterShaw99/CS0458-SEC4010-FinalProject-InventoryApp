@@ -8,7 +8,7 @@ Group: Harlan Chandler, Hunter Shaw
 
 ## Project Details
 
-####Features
+#### Features
 * `Map` - project uses the map collection
 * `Enum` - the enum is used for explicitly declaring appropriate input
 * `OOP` - Object-Oriented Programming
